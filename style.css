@@ -1,0 +1,41 @@
+.list-inline-item a {
+    color: black;
+}
+
+.container-fluid {
+    background-color: #F3E9F1;
+}
+
+.list-inline {
+    margin-top: 16px;
+}
+
+.navbar a {
+    color: black;
+}
+
+.teddy-card img {
+    width: 18rem;
+    margin: auto;
+}
+
+.card .mb-3 {
+    max-width: 540px;
+}
+
+.bloc-1 {
+    margin-top: 20px;
+}
+
+ .basket {
+     margin: 50px 0;
+ }
+  
+.message {
+    font-weight: bold;
+    font-style: italic;
+}
+
+form {
+    margin: 30px 0;
+}
