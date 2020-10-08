@@ -15,7 +15,7 @@
 }
 
 .teddy-card img {
-    width: 18rem;
+    max-width: 18rem;
     margin: auto;
 }
 
