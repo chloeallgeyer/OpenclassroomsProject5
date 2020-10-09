@@ -1,6 +1,11 @@
 const host = 'http://localhost:3000/';
 
-const ajaxRequest = (method, url) => {
+/**
+ * Crée une requête Ajax
+ * @param {*} url url sélectionnée
+ * @param {*} method méthode utilisée
+ */
+const ajaxRequest = (url, method="GET") => {
     return new Promise( (resolve, reject) => {
         // instanciation de la classe XMLHttpRequest 
         const request = new XMLHttpRequest();
@@ -21,7 +26,3 @@ const ajaxRequest = (method, url) => {
         request.send();
     })
 }
-
-
-
-

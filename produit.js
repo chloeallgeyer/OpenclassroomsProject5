@@ -1,22 +1,22 @@
-// !!! VERSION A VALIDER AVEC MENTOR !!!
-// var currentPage = window.location.href;
-// var url = new URL(currentPage);
-// var pageId = url.searchParams.get('id');
-// console.log(pageId);
+// initialisation de la variable pageId qui récupère l'id dans l'url de la page active
+var currentPage = window.location.href;
+var url = new URL(currentPage);
+var pageId = url.searchParams.get('id');
+console.log(pageId);
 
-const queryParamsStr = location.search.substring(1);
-const queryParams = JSON.parse('{"' + decodeURI(queryParamsStr).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
-console.log(queryParams.id);
-
+/**
+ * récupère une liste d'élements (data) et les ajoute à l'élément cible target
+ * @param {*} data objet de  l'ourson sélectionné
+ */
 const renderProduct = (data) => {
     let select = '';
-    // On boucle sur chaque couleur des oursons
+    // On boucle sur chaque couleur existante des oursons
     for (let i=0 ; i < data.colors.length; i++) {
         // déclaration et initialisation des options de select
         select += `<option value="${data.colors[i]}">${data.colors[i]}</option>`;
         console.log(select);
     }
-
+    // document.getElementById('monSelect').innerHTML = select
     // récupération de l'élément cible (conteneur de la card à remplir avec les infos de l'ourson sélectionné au clic)
     const target2 = document.getElementById('target2');
     // déclaration et initialisation de la card 
@@ -31,8 +31,8 @@ const renderProduct = (data) => {
                 <div class="form-row align-items-center">
                     <div class="col-auto my-1">
                         <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected>Coloris</option>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
+                            <option selected disabled>Coloris</option>
                             ${select}
                         </select>
                     </div>
@@ -58,6 +58,10 @@ const renderProduct = (data) => {
     target2.insertAdjacentHTML('beforeend', card2);
 }
 
+/**
+ * Affiche un message d'erreur
+ * @param {*} error message d'erreur
+ */
 const renderError = (error) => {
     const target2 = document.getElementById('target2');
     // TODO: créer variable contenant structure message d'erreur + bouton refresh
@@ -65,6 +69,6 @@ const renderError = (error) => {
     console.log(`erreur survenue : ${error}`);
 }
 // appel de la base de données et display de la liste de produits (.then) et de la page d'erreur (.catch)
-ajaxRequest("GET", `${host}api/teddies/${queryParams.id}`)
+ajaxRequest(`${host}api/teddies/${pageId}`)
     .then( (data) => renderProduct(data))
     .catch( (error) => renderError(error));
