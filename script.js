@@ -26,3 +26,14 @@ const ajaxRequest = (url, method="GET") => {
         request.send();
     })
 }
+
+/**
+ * Affiche un message d'erreur
+ * @param {*} error message d'erreur
+ */
+const renderError = (error) => {
+    const target2 = document.getElementById('target2');
+    // TODO: créer variable contenant structure message d'erreur + bouton refresh
+    target2.insertAdjacentHTML('beforeend', `<h2>Une erreur est survenue: impossible de charger la page</h2>`);
+    console.log(`erreur survenue : ${error}`);
+}

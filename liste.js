@@ -20,6 +20,7 @@ const renderList = (data) => {
  * @param {*} element informations de chaque ourson (image, name, description, price, id)
  */
 const createCard = (element) => {
+    const bearPrice = element.price / 100;
     return `
     <div class="col-md-4">
         <div class="card">
@@ -27,23 +28,12 @@ const createCard = (element) => {
             <div class="card-body">
                 <h5 class="card-title">Ourson ${element.name}</h5>
                 <p class="card-text">${element.description}</p>
-                <p>Prix : ${element.price}</p>
+                <p>Prix : ${bearPrice}€</p>
                 <a href="produit.html?id=${element._id}" class="btn btn-primary">En savoir plus</a>
             </div>
         </div>
     </div>
 `
-}
-
-/**
- * Affiche un message d'erreur
- * @param {*} error message d'erreur
- */
-const renderError = (error) => {
-    const target = document.getElementById('target');
-    // TODO: créer variable contenant structure message d'erreur + bouton refresh
-    target.insertAdjacentHTML('beforeend', `<h2>Une erreur est survenue: impossible de charger la page</h2>`);
-    console.log(`erreur survenue : ${error}`);
 }
 
 // appel de la base de données et display de la liste de produits (.then) et de la page d'erreur (.catch)

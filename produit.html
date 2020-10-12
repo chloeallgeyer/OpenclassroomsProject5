@@ -49,7 +49,37 @@
 
     <div class="container bloc-1">
         <div class="card mb-3">
-            <div id="target2" class="row no-gutters">
+            <div class="row no-gutters">
+                <div id="bear-image" class="col-md-4">
+                    <img src="${data.imageUrl}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 id="bear-name" class="card-title"></h5>
+                        <p id="bear-description" class="card-text"></p>
+                        <p id="bear-price"></p>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto my-1">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select id="color-options" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
+                                </select>
+                            </div>
+                            <div class="col-auto my-1">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                    <option selected>Quantité</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="col-auto my-1">
+                                <button type="submit" class="btn btn-primary">Ajouter au panier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
