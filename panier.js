@@ -1,3 +1,63 @@
+const renderCart = () => {
+    const numberOfArticles = document.getElementById('article-number');
+    const emptyCartMessage = document.getElementById('empty-cart');
+
+    if(localStorage.length > 0) {
+        numberOfArticles.innerHTML = localStorage.length;
+        let body = '';
+        let amount = 0;
+
+        // Récupère les clés de l'objet localStorage sous forme de tableau
+        const itemsArray = Object.keys(localStorage);
+        itemsArray.forEach((item) => {
+            const info = JSON.parse(localStorage.getItem(item));
+            const image = info.imageUrl;
+            const name = info.name;
+            const price = info.price / 100;
+            console.log(itemsArray);
+            body += `
+                <tr>
+                    <td><img src='${image}' style='max-height:50px;'></td>
+                    <td>${name}</td>
+                    <td>${price}€</td>
+                    <td><button class="remove-item" data-id="${item}">X</button></td>
+                </tr>
+            `;
+            amount += price;
+        })
+
+        document.getElementById('cart-table').innerHTML = body;  
+        document.getElementById('amount').innerHTML = amount;
+
+        const removeButtons = document.getElementsByClassName('remove-item');
+        for(let removeButton of removeButtons) {
+            const id = removeButton.getAttribute('data-id');
+            removeButton.onclick = (e) => {
+                localStorage.removeItem(id);
+                renderCart();
+            }
+            
+        }
+        
+    } else {
+        // affiche un message et vide le tableau
+        emptyCartMessage.innerHTML = 'Votre panier est vide :(';
+        document.getElementById('cart-table').innerHTML = '';  
+        document.getElementById('amount').innerHTML = '';
+
+    }
+}
+
+renderCart();
+
+
+
+document.getElementById('clear-cart').onclick = (e) => {   
+    clearCart();   
+}
+
+
+
 // Validation des inputs du formulaire avant envoi
 
 
@@ -32,6 +92,8 @@ submit.onclick = (e) => {
     // Print data dans la console
     console.log("contact", contact);
 }
+
+
 
 
 

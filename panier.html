@@ -48,9 +48,19 @@
         </nav>
     </div>
 
-    <div class="container text-center basket" >
-        <h1>Votre panier</h1>
-        <p>Rappel du contenu du panier</p>
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Votre panier</h1>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tbody id="cart-table">
+                </tbody>
+            </table>
+            <p class="card-text" id="empty-cart">Nombre d'articles: <span id="article-number"></span></p>
+            <p class="card-text">Montant : <span id="amount"></span>€</p>
+            <button type="submit" class="btn btn-primary" id="clear-cart">Vider mon panier</button>
+        </div>
     </div>
 
     <form action="panier.html" method="post" class="container" id="form">
@@ -82,7 +92,7 @@
                 <input type="email" name="email" class="form-control" id="email" required>
             </div>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary" id="submit">Valider mon panier</button>
+        <button type="submit" name="submit" class="btn btn-primary" id="submit">Valider ma commande</button>
     </form>
 
     <div class="bg-light">

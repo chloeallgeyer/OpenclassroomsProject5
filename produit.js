@@ -28,11 +28,37 @@ const renderProduct = (data) => {
     document.getElementById('bear-description').innerHTML = data.description;
     document.getElementById('bear-price').innerHTML = bearPrice + '€';
     document.getElementById('bear-image').innerHTML = image;
+    // addToCart(bearPrice);
 }
-// Initialisation de la variable ayant pour valeur le résultat de la fonction getParam('id)
-const pageId = getParam('id');
+
+
 
 // appel de la base de données et display de la liste de produits (.then) et de la page d'erreur (.catch)
-ajaxRequest(`${host}api/teddies/${pageId}`)
-    .then( (data) => renderProduct(data))
-    .catch( (error) => renderError(error));
+const run = async () => {
+
+    // Initialisation de la variable ayant pour valeur le résultat de la fonction getParam('id)
+    const pageId = getParam('id');
+
+    const ajaxResponse = await ajaxRequest(`${host}api/teddies/${pageId}`)
+    .then( (data) => {
+        renderProduct(data);
+        return data;
+    })
+    .catch( (error) => {
+        renderError(error);
+        return null;
+    });
+
+    document.getElementById('add-to-cart').onclick = (e) => {
+        const info = {};
+        info.imageUrl = ajaxResponse.imageUrl;
+        info.name = ajaxResponse.name;
+        info.price = ajaxResponse.price;
+
+        localStorage.setItem(pageId, JSON.stringify(info));   
+    }
+}
+
+run();
+
+console.log(localStorage);
