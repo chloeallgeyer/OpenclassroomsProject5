@@ -39,3 +39,7 @@
 form {
     margin: 30px 0;
 }
+
+tr img {
+    max-height:50px;
+}

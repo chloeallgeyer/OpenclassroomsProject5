@@ -28,12 +28,23 @@ const renderProduct = (data) => {
     document.getElementById('bear-description').innerHTML = data.description;
     document.getElementById('bear-price').innerHTML = bearPrice + '€';
     document.getElementById('bear-image').innerHTML = image;
-    // addToCart(bearPrice);
 }
 
+/**
+ * Fonction qui ajoute un ourson au localStorage au clic sur le bouton "ajouter au panier"
+ */
+const addToCart = (info) => {
+    const submitBear = document.getElementById('add-to-cart');
+    submitBear.onclick = (e) => {
+        e.preventDefault;
+        const addBear = getParam('id');
+        localStorage.setItem(addBear, info);     
+    }
+}
 
-
-// appel de la base de données et display de la liste de produits (.then) et de la page d'erreur (.catch)
+/**
+ * Fonction qui récupère les données des produits ajoutés dans le panier et les stocke dans localStorage
+ */
 const run = async () => {
 
     // Initialisation de la variable ayant pour valeur le résultat de la fonction getParam('id)

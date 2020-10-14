@@ -37,22 +37,3 @@ const renderError = (error) => {
     target2.insertAdjacentHTML('beforeend', `<h2>Une erreur est survenue: impossible de charger la page</h2>`);
     console.log(`erreur survenue : ${error}`);
 }
-
-/**
- * Fonction qui ajoute un ourson au localStorage au clic sur le bouton "ajouter au panier"
- */
-const addToCart = (info) => {
-    const submitBear = document.getElementById('add-to-cart');
-    submitBear.onclick = (e) => {
-        e.preventDefault;
-        const addBear = getParam('id');
-        localStorage.setItem(addBear, info);     
-    }
-}
-
-/**
- * Fonction qui vide le localStorage au clic sur "vider mon panier"
- */
-const clearCart = () => {
-    localStorage.clear();
-}

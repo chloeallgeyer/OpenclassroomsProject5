@@ -1,3 +1,8 @@
+//     ----------------------     PANIER     ----------------------     //
+
+/**
+ * Fonction qui récupère les données du panier présentes dans localStorage et les affiche dans l'élément cible
+ */
 const renderCart = () => {
     const numberOfArticles = document.getElementById('article-number');
     const emptyCartMessage = document.getElementById('empty-cart');
@@ -14,13 +19,13 @@ const renderCart = () => {
             const image = info.imageUrl;
             const name = info.name;
             const price = info.price / 100;
-            console.log(itemsArray);
+            console.log('itemsarray', itemsArray);
             body += `
                 <tr>
-                    <td><img src='${image}' style='max-height:50px;'></td>
+                    <td><img src='${image}'></td>
                     <td>${name}</td>
                     <td>${price}€</td>
-                    <td><button class="remove-item" data-id="${item}">X</button></td>
+                    <td><button class="remove-item btn btn-light " data-id="${item}"><i class="fas fa-trash-alt"></i></button></td>
                 </tr>
             `;
             amount += price;
@@ -32,7 +37,7 @@ const renderCart = () => {
         const removeButtons = document.getElementsByClassName('remove-item');
         for(let removeButton of removeButtons) {
             const id = removeButton.getAttribute('data-id');
-            removeButton.onclick = (e) => {
+            removeButton.onclick = () => {
                 localStorage.removeItem(id);
                 renderCart();
             }
@@ -47,16 +52,24 @@ const renderCart = () => {
 
     }
 }
-
 renderCart();
 
+/**
+ * Fonction qui vide le localStorage
+ */
+const clearCart = () => {
+    localStorage.clear();
+}
 
-
+/**
+ * Appel de la fonction qui vide le contenu du panier (localStorage) au clic sur le bouton"vider mon panier"
+ */
 document.getElementById('clear-cart').onclick = (e) => {   
     clearCart();   
 }
 
 
+//     ----------------------     FORMULAIRE     ----------------------     //
 
 // Validation des inputs du formulaire avant envoi
 
@@ -84,14 +97,60 @@ const formDataExtractor = (form) => {
 }
 
 // Event listener onclik
-submit.onclick = (e) => {
+submit.onclick = async (e) => {
     // On empêche la redirection post submit
     e.preventDefault();
     // Récuperation des data du formulaire à l'aide de la fonction formDataExtractor
     const contact = formDataExtractor(form);
-    // Print data dans la console
-    console.log("contact", contact);
+    const products = Object.keys(localStorage);
+    const body = {contact, products};
+    const responseData = await sendData(body)
+        .then( (data) => {
+            return data;
+        })
+        .catch( (error) => {
+            console.log('error in sendData', error);
+            return null;
+        });
+    console.log('data', responseData);
+    if (!responseData) {
+        // do something, appeler un rendererror/fonction
+    } else {
+        // renvoyer vers page de confirmation
+        window.location.href = "confirmation.html";
+    } 
+
 }
+
+const sendData = async (body) => {
+    const formResponse = await fetch('http://localhost:3000/api/teddies/order', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+    return formResponse.json();
+}
+
+
+
+// (async () => {
+//     const products = Object.keys(localStorage);
+//     const contact = formDataExtractor(form);
+//     const formResponse = await fetch('http://localhost:3000/api/teddies/order', {
+//         method: 'POST',
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({products, contact})
+//     });
+//     const response = await formResponse.json();
+//     console.log('response', response);
+//     console.log(formResponse);
+//   })();
 
 
 
