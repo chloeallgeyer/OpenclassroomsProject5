@@ -96,7 +96,10 @@ const formDataExtractor = (form) => {
     return obj;
 }
 
-// Event listener onclik
+/**
+ * 
+ * @param {*} e 
+ */
 submit.onclick = async (e) => {
     // On empêche la redirection post submit
     e.preventDefault();
@@ -104,7 +107,8 @@ submit.onclick = async (e) => {
     const contact = formDataExtractor(form);
     const products = Object.keys(localStorage);
     const body = {contact, products};
-    const responseData = await sendData(body)
+    const url = 'http://localhost:3000/api/teddies/order';
+    const responseData = await sendData(url, body)
         .then( (data) => {
             return data;
         })
@@ -116,14 +120,21 @@ submit.onclick = async (e) => {
     if (!responseData) {
         // do something, appeler un rendererror/fonction
     } else {
+        // ajouter response data dans mon sessionstorage
+        sessionStorage.setItem('order', JSON.stringify(responseData));
+        localStorage.clear();
         // renvoyer vers page de confirmation
         window.location.href = "confirmation.html";
     } 
 
 }
 
-const sendData = async (body) => {
-    const formResponse = await fetch('http://localhost:3000/api/teddies/order', {
+/**
+ * Fonction PROMISE qui envoie des données (body) vers une url a travers la méthode post et qui renvoie la réponse
+ * @param {object} body (données à envoyer)
+ */
+const sendData = async (url, body) => {
+    const formResponse = await fetch(url, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -133,100 +144,3 @@ const sendData = async (body) => {
     });
     return formResponse.json();
 }
-
-
-
-// (async () => {
-//     const products = Object.keys(localStorage);
-//     const contact = formDataExtractor(form);
-//     const formResponse = await fetch('http://localhost:3000/api/teddies/order', {
-//         method: 'POST',
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({products, contact})
-//     });
-//     const response = await formResponse.json();
-//     console.log('response', response);
-//     console.log(formResponse);
-//   })();
-
-
-
-
-
-// {
-//     "contact": {
-//         "firstName": "Chloé",
-//         "lastName": "Allgeyer",
-//         "address": "923, chemin de roumagoua, résidence ouliveto, apt C13",
-//         "city": "La Ciotat",
-//         "email": "kzjerhg@akjzberf.com"
-//     },
-
-//     "products": [
-//         "5be9c8541c9d440000665243",
-//         "5be9c8541c9d440000665243"
-//     ]
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function sendData(data) {
-//     var XHR = new XMLHttpRequest();
-//     var FD  = new FormData();
-  
-//     // Mettez les données dans l'objet FormData
-//     for(name in data) {
-//       FD.append(name, data[name]);
-//     }
-  
-//     // Définissez ce qui se passe si la soumission s'est opérée avec succès
-//     XHR.addEventListener('load', function(event) {
-//       alert('Ouais ! Données envoyées et réponse chargée.');
-//     });
-  
-//     // Definissez ce qui se passe en cas d'erreur
-//     XHR.addEventListener('error', function(event) {
-//       alert('Oups! Quelque chose s\'est mal passé.');
-//     });
-  
-//     // Configurez la requête
-//     XHR.open('POST', 'https://example.com/cors.php');
-  
-//     // Expédiez l'objet FormData ; les en-têtes HTTP sont automatiquement définies
-//     XHR.send(FD);
-//   }
-
-// Expects request to contain:
-// * contact: {
-// *   firstName: string,
-// *   lastName: string,
-// *   address: string,
-// *   city: string,
-// *   email: string
-// * }
-// * products: [string] <-- array of product _id 

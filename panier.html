@@ -30,7 +30,7 @@
 
 </head>
 <body>
-    <div class="container-fluid">
+    <header class="container-fluid">
         <nav class="navbar container navbar-expand-lg navbar-light">
             <a href="index.html"><img src="images/logo.png" width="300" height="135" alt="logo entreprise orinoco"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,70 +44,72 @@
                 </ul>
             </div>
         </nav>
-    </div>
+    </header>
 
-    <div class="card text-center">
-        <div class="card-header">
-            <h1>Votre panier</h1>
+    <main class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                <h1>Votre panier</h1>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tbody id="cart-table">
+                    </tbody>
+                </table>
+                <p class="card-text" id="empty-cart">Nombre d'articles: <span id="article-number"></span></p>
+                <p class="card-text">Montant à régler : <span id="amount"></span>€</p>
+                <button type="submit" class="btn btn-primary" id="clear-cart">Vider mon panier</button>
+            </div>
         </div>
-        <div class="card-body">
-            <table class="table">
-                <tbody id="cart-table">
-                </tbody>
-            </table>
-            <p class="card-text" id="empty-cart">Nombre d'articles: <span id="article-number"></span></p>
-            <p class="card-text">Montant à régler : <span id="amount"></span>€</p>
-            <button type="submit" class="btn btn-primary" id="clear-cart">Vider mon panier</button>
-        </div>
-    </div>
+    
+        <form action="panier.html" method="post" class="container" id="form">
+            <p class="message">Veuillez renseigner le formulaire ci-dessous afin de finaliser votre commande.</p>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">Prénom</label>
+                    <input type="text" name="firstName" class="form-control" id="firstName" minlength="2" maxlength="30" pattern="[A-Za-z'`^¨éèàù -]+" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastName">Nom</label>
+                    <input type="text" name="lastName" class="form-control" id="lastName" minlength="2" maxlength="30" pattern="[A-Za-z'`^¨éèàù -]+" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="address">Adresse</label>
+                    <input type="text" name="address" class="form-control" id="address" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="city">Ville</label>
+                    <input type="text" name="city" class="form-control" id="city" required>
+                </div>
+            </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" class="form-control" id="email" required>
+                </div>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary" id="submit">Valider ma commande</button>
+        </form>
+    </main>
 
-    <form action="panier.html" method="post" class="container" id="form">
-        <p class="message">Veuillez renseigner le formulaire ci-dessous afin de finaliser votre commande.</p>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="firstName">Prénom</label>
-                <input type="text" name="firstName" class="form-control" id="firstName" minlength="2" maxlength="30" pattern="[A-Za-z'`^¨éèàù -]+" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="lastName">Nom</label>
-                <input type="text" name="lastName" class="form-control" id="lastName" minlength="2" maxlength="30" pattern="[A-Za-z'`^¨éèàù -]+" required>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="address">Adresse</label>
-                <input type="text" name="address" class="form-control" id="address" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="city">Ville</label>
-                <input type="text" name="city" class="form-control" id="city" required>
-            </div>
-        </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="email">E-mail</label>
-                <input type="email" name="email" class="form-control" id="email" required>
-            </div>
-        </div>
-        <button type="submit" name="submit" class="btn btn-primary" id="submit">Valider ma commande</button>
-    </form>
-
-    <div class="bg-light">
+    <footer class="bg-light">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col">
-              <ul class="list-inline text-center">
-                <li class="list-inline-item"><a href="#">À propos</a></li>
-                <li class="list-inline-item">&middot;</li>
-                <li class="list-inline-item"><a href="#">Conditions d'utilisation</a></li>
-                <li class="list-inline-item">&middot;</li>
-                <li class="list-inline-item"><a href="#">Nous contacter</a></li>
-              </ul>
+            <div class="row">
+                <div class="col">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a href="#">À propos</a></li>
+                        <li class="list-inline-item">&middot;</li>
+                        <li class="list-inline-item"><a href="#">Conditions d'utilisation</a></li>
+                        <li class="list-inline-item">&middot;</li>
+                        <li class="list-inline-item"><a href="#">Nous contacter</a></li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </footer>
 
 
 
