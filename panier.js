@@ -48,8 +48,7 @@ const renderCart = () => {
         // affiche un message et vide le tableau
         emptyCartMessage.innerHTML = 'Votre panier est vide :(';
         document.getElementById('cart-table').innerHTML = '';  
-        document.getElementById('amount').innerHTML = '';
-
+        document.getElementById('empty-cart-amount').innerHTML = '';
     }
 }
 renderCart();
@@ -103,6 +102,7 @@ const formDataExtractor = (form) => {
 submit.onclick = async (e) => {
     // On empêche la redirection post submit
     e.preventDefault();
+    e.stopPropagation();
     // Récuperation des data du formulaire à l'aide de la fonction formDataExtractor
     const contact = formDataExtractor(form);
     const products = Object.keys(localStorage);

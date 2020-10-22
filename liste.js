@@ -20,7 +20,7 @@ const renderList = (data) => {
  * @param {*} element informations de chaque ourson (image, name, description, price, id)
  */
 const createCard = (element) => {
-    const bearPrice = element.price / 100;
+    const bearPrice = (element.price / 100).toFixed(2);
     return `
     <div class="col-md-4">
         <div class="card">

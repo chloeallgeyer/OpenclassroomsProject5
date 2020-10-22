@@ -1,17 +1,32 @@
-.list-inline-item a {
-    color: black;
-}
-
+/* ------------------- HEADER ------------------- */
 .container-fluid {
     background-color: #F3E9F1;
 }
 
+.navbar a {
+    color: black;
+}
+
+/* ------------------- FOOTER ------------------- */
 .list-inline {
     margin-top: 16px;
 }
 
-.navbar a {
+.list-inline-item a {
     color: black;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+/* ------------------- INDEX ------------------- */
+#welcome {
+    margin: 50px auto;
+}
+
+#welcome h1 {
+    font-size: 30px;
 }
 
 .teddy-card img {
@@ -19,17 +34,23 @@
     margin: auto;
 }
 
-.card .mb-3 {
-    max-width: 540px;
+.col-md-4 .card {
+    margin: 20px;
 }
 
+/* ------------------- PRODUIT ------------------- */
 .bloc-1 {
     margin-top: 20px;
 }
 
- .basket {
-     margin: 50px 0;
- }
+.card .mb-3 {
+    max-width: 540px;
+}
+
+/* ------------------- PANIER ------------------- */
+tr img {
+    max-height:50px;
+}
   
 .message {
     font-weight: bold;
@@ -38,8 +59,4 @@
 
 form {
     margin: 30px 0;
-}
-
-tr img {
-    max-height:50px;
 }

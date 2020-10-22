@@ -8,7 +8,7 @@ const getAmount = (products) => {
     products.forEach((product) => {
         amount += product.price / 100;
     })
-    return amount;
+    return amount.toFixed(2);
 }
 
 /**

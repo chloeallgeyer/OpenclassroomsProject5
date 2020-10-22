@@ -9,18 +9,27 @@ const getParam = (param) => {
 }
 
 /**
+ * Fonction qui récupère le nom de l'ourson sélectionné et le renvoie
+ * @param {string} data 
+ */
+const renderArticleName = (data) => {
+    const articleName = data.name;
+    return `${articleName} a bien été ajouté à votre panier :)`;
+}
+
+/**
  * récupère une liste d'élements (data) et les ajoute à l'élément cible target
  * @param {*} data objet de  l'ourson sélectionné
  */
 const renderProduct = (data) => {
-    let select = '<option selected disabled>Coloris</option>';
+    let select = '<option selected disabled>Couleurs</option>';
     // On boucle sur chaque couleur existante des oursons
     for (let i=0 ; i < data.colors.length; i++) {
         // déclaration et initialisation des options de select
         select += `<option value="${data.colors[i]}">${data.colors[i]}</option>`;
         console.log(select);
     }
-    const bearPrice = data.price / 100;
+    const bearPrice = (data.price / 100).toFixed(2);
     const image = `<img src="${data.imageUrl}" class="card-img" alt="...">`
 
     document.getElementById('color-options').innerHTML = select;
@@ -28,6 +37,9 @@ const renderProduct = (data) => {
     document.getElementById('bear-description').innerHTML = data.description;
     document.getElementById('bear-price').innerHTML = bearPrice + '€';
     document.getElementById('bear-image').innerHTML = image;
+
+    const articleName = renderArticleName(data);
+    document.getElementById('article-name').insertAdjacentHTML('beforeend', articleName);
 }
 
 /**

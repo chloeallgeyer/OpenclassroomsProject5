@@ -3,32 +3,18 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
-    <title>Orinoco - Vente d'ours en peluche en ligne</title>
-	<meta name="title" content="Orinoco - Vente d'oursons en peluche en ligne">
-	<meta name="description" content="Orinoco vous propose des oursons en peluche de qualité">
+    <title>Orinoco - Votre panier</title>
+	<meta name="title" content="Orinoco - Récapitulatif de votre panier">
+	<meta name="description" content="Orinoco - Récapitulatif de votre panier">
 	<meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Open Graph properties -->
-	<!--Facebook -->
-	<!-- <meta property="og:title" content="La chouette agence - Entreprise webdesign Lyon"/>
-	<meta property="og:type" content="website"/>
-	<meta property="og:url" content="https://chloeallgeyer.github.io/lachouetteagence-new/"/>
-	<meta property="og:image" content="img/logo.png"/>
-	<meta property="og:description" content="La chouette agence, entreprise de webdesign basée à Lyon, vous accompagne dans votre stratégie digitale en proposant des sites web design et sur mesure, réalisés par les meilleurs graphistes Lyonnais"/> -->
-	<!--Twitter -->
-	<!-- <meta name="twitter:card" content="summary"/>
-	<meta name="twitter:site" content="https://chloeallgeyer.github.io/lachouetteagence-new/"/>
-	<meta name="twitter:title" content="La chouette agence - Entreprise webdesign Lyon"/>
-	<meta name="twitter:description" content="La chouette agence, entreprise de webdesign basée à Lyon, vous accompagne dans votre stratégie digitale en proposant des sites web design et sur mesure, réalisés par les meilleurs graphistes Lyonnais"/>
-    <meta name="twitter:image" content="img/logo.png"/> -->
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/bb547d8c1b.js" crossorigin="anonymous"></script>
-
 </head>
+
 <body>
     <header class="container-fluid">
         <nav class="navbar container navbar-expand-lg navbar-light">
@@ -37,7 +23,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav justify-content-center">
+                <ul class="nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="panier.html">Panier <i class="fas fa-shopping-basket"></i></a>
                     </li>
@@ -57,7 +43,7 @@
                     </tbody>
                 </table>
                 <p class="card-text" id="empty-cart">Nombre d'articles: <span id="article-number"></span></p>
-                <p class="card-text">Montant à régler : <span id="amount"></span>€</p>
+                <p class="card-text" id="empty-cart-amount">Montant à régler : <span id="amount"></span>€</p>
                 <button type="submit" class="btn btn-primary" id="clear-cart">Vider mon panier</button>
             </div>
         </div>
@@ -110,14 +96,6 @@
             </div>
         </div>
     </footer>
-
-
-
-
-
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
