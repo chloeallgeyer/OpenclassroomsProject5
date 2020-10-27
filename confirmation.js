@@ -8,7 +8,7 @@ const getAmount = (products) => {
     products.forEach((product) => {
         amount += product.price / 100;
     })
-    return amount.toFixed(2);
+    return amount;
 }
 
 /**
@@ -20,8 +20,15 @@ const renderOrder = () => {
     const products = order.products;
     const orderId = order.orderId;
 
-    let date = new Date();
-    let dateOrder = date.toLocaleString('fr-FR',{
+    const date = new Date();
+    const dateOrder = date.toLocaleString('fr-FR',{
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    const expeditionDate = new Date(date.setDate(date.getDate() + 5));
+    const expeditionDateStr = expeditionDate.toLocaleString('fr-FR',{
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -38,7 +45,7 @@ const renderOrder = () => {
             <tr>
                 <td><img src='${image}'></td>
                 <td>${name}</td>
-                <td>${price}€</td>
+                <td>${price.toFixed(2)}€</td>
             </tr>
             <br>
             <br>
@@ -50,10 +57,11 @@ const renderOrder = () => {
     document.getElementById('date').innerHTML = dateOrder;
     document.getElementById('order-id').innerHTML = orderId;
     document.getElementById('details').innerHTML = orderDetails;
-    document.getElementById('amount').innerHTML = amount;
+    document.getElementById('amount').innerHTML = amount.toFixed(2);
     document.getElementById('name').innerHTML = `${contact.firstName} ${contact.lastName}`;
     document.getElementById('address').innerHTML = contact.address;
     document.getElementById('city').innerHTML = contact.city;
+    document.getElementById('expedition').innerHTML = expeditionDateStr;
 
 }
 

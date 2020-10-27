@@ -20,11 +20,12 @@ const renderCart = () => {
             const name = info.name;
             const price = info.price / 100;
             console.log('itemsarray', itemsArray);
+            // body += renderCartLine (image, name, price, item)
             body += `
                 <tr>
                     <td><img src='${image}'></td>
                     <td>${name}</td>
-                    <td>${price}€</td>
+                    <td>${price.toFixed(2)}€</td>
                     <td><button class="remove-item btn btn-light " data-id="${item}"><i class="fas fa-trash-alt"></i></button></td>
                 </tr>
             `;
@@ -32,7 +33,7 @@ const renderCart = () => {
         })
 
         document.getElementById('cart-table').innerHTML = body;  
-        document.getElementById('amount').innerHTML = amount;
+        document.getElementById('amount').innerHTML = amount.toFixed(2);
 
         const removeButtons = document.getElementsByClassName('remove-item');
         for(let removeButton of removeButtons) {
@@ -49,22 +50,17 @@ const renderCart = () => {
         emptyCartMessage.innerHTML = 'Votre panier est vide :(';
         document.getElementById('cart-table').innerHTML = '';  
         document.getElementById('empty-cart-amount').innerHTML = '';
+        document.getElementById('clear-cart').remove();
     }
 }
 renderCart();
 
 /**
- * Fonction qui vide le localStorage
- */
-const clearCart = () => {
-    localStorage.clear();
-}
-
-/**
  * Appel de la fonction qui vide le contenu du panier (localStorage) au clic sur le bouton"vider mon panier"
  */
 document.getElementById('clear-cart').onclick = (e) => {   
-    clearCart();   
+    localStorage.clear();
+    renderCart();  
 }
 
 
@@ -100,12 +96,13 @@ const formDataExtractor = (form) => {
  * @param {*} e 
  */
 submit.onclick = async (e) => {
-    // On empêche la redirection post submit
+    // On empêche la redirection et la propagation post submit
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
     // Récuperation des data du formulaire à l'aide de la fonction formDataExtractor
     const contact = formDataExtractor(form);
     const products = Object.keys(localStorage);
+    // appel de fonction formValidator
     const body = {contact, products};
     const url = 'http://localhost:3000/api/teddies/order';
     const responseData = await sendData(url, body)
