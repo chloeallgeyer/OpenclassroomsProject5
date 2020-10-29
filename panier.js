@@ -1,6 +1,62 @@
 //     ----------------------     PANIER     ----------------------     //
 
 /**
+ * 
+ * @param {string} image 
+ * @param {string} name 
+ * @param {number} price 
+ * @param {string} item 
+ */
+const renderCartLine = (image, name, price, item) => {
+    return `
+            <tr>
+                <td><img src='${image}'></td>
+                <td>${name}</td>
+                <td>${price.toFixed(2)}€</td>
+                <td><button class="remove-item btn btn-light " data-id="${item}"><i class="fas fa-trash-alt"></i></button></td>
+            </tr>
+`;
+}
+/**
+ * 
+ */
+const renderForm = () => {
+    if(localStorage.length > 0) {
+        return `<p class="message">Veuillez renseigner le formulaire ci-dessous afin de finaliser votre commande.</p>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName">Prénom</label>
+                        <input type="text" name="firstName" class="form-control" id="firstName" minlength="2" maxlength="30" pattern="[A-Za-z'^¨éèàù -]+" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Nom</label>
+                        <input type="text" name="lastName" class="form-control" id="lastName" minlength="2" maxlength="30" pattern="[A-Za-z'^¨éèàù -]+" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="address">Adresse</label>
+                        <input type="text" name="address" class="form-control" id="address" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="city">Ville</label>
+                        <input type="text" name="city" class="form-control" id="city" required>
+                    </div>
+                </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" class="form-control" id="email" required>
+                    </div>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary" id="submit">Valider ma commande</button>`
+    } else {
+        return null;
+    }
+}
+
+/**
  * Fonction qui récupère les données du panier présentes dans localStorage et les affiche dans l'élément cible
  */
 const renderCart = () => {
@@ -9,7 +65,7 @@ const renderCart = () => {
 
     if(localStorage.length > 0) {
         numberOfArticles.innerHTML = localStorage.length;
-        let body = '';
+        let tBody = '';
         let amount = 0;
 
         // Récupère les clés de l'objet localStorage sous forme de tableau
@@ -20,20 +76,16 @@ const renderCart = () => {
             const name = info.name;
             const price = info.price / 100;
             console.log('itemsarray', itemsArray);
-            // body += renderCartLine (image, name, price, item)
-            body += `
-                <tr>
-                    <td><img src='${image}'></td>
-                    <td>${name}</td>
-                    <td>${price.toFixed(2)}€</td>
-                    <td><button class="remove-item btn btn-light " data-id="${item}"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-            `;
+            tBody += renderCartLine(image, name, price, item);
             amount += price;
         })
 
-        document.getElementById('cart-table').innerHTML = body;  
+        document.getElementById('cart-table').innerHTML = tBody;  
         document.getElementById('amount').innerHTML = amount.toFixed(2);
+
+                
+        const formDisplay = renderForm();
+        document.getElementById('form').innerHTML = formDisplay;
 
         const removeButtons = document.getElementsByClassName('remove-item');
         for(let removeButton of removeButtons) {
@@ -41,16 +93,17 @@ const renderCart = () => {
             removeButton.onclick = () => {
                 localStorage.removeItem(id);
                 renderCart();
-            }
-            
+            }    
         }
-        
+
     } else {
         // affiche un message et vide le tableau
         emptyCartMessage.innerHTML = 'Votre panier est vide :(';
         document.getElementById('cart-table').innerHTML = '';  
         document.getElementById('empty-cart-amount').innerHTML = '';
+        document.getElementById('form').innerHTML = '';
         document.getElementById('clear-cart').remove();
+
     }
 }
 renderCart();
@@ -60,14 +113,11 @@ renderCart();
  */
 document.getElementById('clear-cart').onclick = (e) => {   
     localStorage.clear();
-    renderCart();  
+    renderCart();
 }
 
 
 //     ----------------------     FORMULAIRE     ----------------------     //
-
-// Validation des inputs du formulaire avant envoi
-
 
 // Initialisation des éléments
 const submit = document.getElementById("submit");
@@ -95,10 +145,10 @@ const formDataExtractor = (form) => {
  * 
  * @param {*} e 
  */
-submit.onclick = async (e) => {
+form.onsubmit = async (e) => {
     // On empêche la redirection et la propagation post submit
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     // Récuperation des data du formulaire à l'aide de la fonction formDataExtractor
     const contact = formDataExtractor(form);
     const products = Object.keys(localStorage);

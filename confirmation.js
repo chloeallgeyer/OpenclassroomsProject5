@@ -59,6 +59,7 @@ const renderOrder = () => {
     document.getElementById('details').innerHTML = orderDetails;
     document.getElementById('amount').innerHTML = amount.toFixed(2);
     document.getElementById('name').innerHTML = `${contact.firstName} ${contact.lastName}`;
+    document.getElementById('email-confirmation').innerHTML = contact.email;
     document.getElementById('address').innerHTML = contact.address;
     document.getElementById('city').innerHTML = contact.city;
     document.getElementById('expedition').innerHTML = expeditionDateStr;

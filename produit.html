@@ -47,33 +47,35 @@
                         <p id="bear-description" class="card-text"></p>
                         <p id="bear-price"></p>
                         <div class="form-row align-items-center">
-                            <div class="col-auto my-1">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select id="color-options" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
-                                </select>
-                            </div>
-                            <div class="col-auto my-1">
-                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#cartModal" id="add-to-cart">Ajouter au panier
-                                </button>
-                                <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="cartModalLabel">Article ajouté !</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" id="article-name">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="index.html"><button type="button" class="btn btn-secondary">Poursuivre mes achats</button></a>
-                                                <a href="panier.html"><button type="button" class="btn btn-primary">Accéder au panier</button></a>
+                            <form id="product-form">
+                                <div class="col-auto my-1">
+                                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                    <select id="color-options" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
+                                    </select>
+                                </div>
+                                <div class="col-auto my-1">
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal" id="add-to-cart">Ajouter au panier
+                                    </button>
+                                    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="cartModalLabel">Article ajouté !</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" id="article-name">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="index.html"><button type="button" class="btn btn-secondary">Poursuivre mes achats</button></a>
+                                                    <a href="panier.html"><button type="button" class="btn btn-primary">Accéder au panier</button></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <!-- <div class="form-row align-items-center">
                             <div class="col-auto my-1">

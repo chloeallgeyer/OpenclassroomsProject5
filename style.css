@@ -30,7 +30,6 @@ footer {
 }
 
 .teddy-card img {
-    max-width: 18rem;
     margin: auto;
 }
 
@@ -48,6 +47,9 @@ footer {
 }
 
 /* ------------------- PANIER ------------------- */
+#cart-card {
+    margin: 50px 0;
+}
 tr img {
     max-height:50px;
 }

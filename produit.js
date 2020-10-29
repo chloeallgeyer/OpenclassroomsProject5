@@ -1,3 +1,4 @@
+
 /**
  * Fonction qui récupère un paramètre d'url et le renvoie
  * @param {string} param paramètre demandé
@@ -22,7 +23,7 @@ const renderArticleName = (data) => {
  * @param {*} data objet de  l'ourson sélectionné
  */
 const renderProduct = (data) => {
-    let select = '<option selected disabled>Couleurs</option>';
+    let select = '<option selected disabled value="">Couleurs</option>';
     // On boucle sur chaque couleur existante des oursons
     for (let i=0 ; i < data.colors.length; i++) {
         // déclaration et initialisation des options de select
@@ -43,18 +44,6 @@ const renderProduct = (data) => {
 }
 
 /**
- * Fonction qui ajoute un ourson au localStorage au clic sur le bouton "ajouter au panier"
- */
-const addToCart = (info) => {
-    const submitBear = document.getElementById('add-to-cart');
-    submitBear.onclick = (e) => {
-        e.preventDefault;
-        const addBear = getParam('id');
-        localStorage.setItem(addBear, info);     
-    }
-}
-
-/**
  * Fonction qui récupère les données des produits ajoutés dans le panier et les stocke dans localStorage
  */
 const run = async () => {
@@ -72,7 +61,11 @@ const run = async () => {
         return null;
     });
 
-    document.getElementById('add-to-cart').onclick = (e) => {
+    document.getElementById('product-form').onsubmit = (e) => {
+        e.preventDefault();
+        // affiche la modal bootstrap au onsubmit (une fois les champs validés)
+        $('#cartModal').modal('show');
+
         const info = {};
         info.imageUrl = ajaxResponse.imageUrl;
         info.name = ajaxResponse.name;
