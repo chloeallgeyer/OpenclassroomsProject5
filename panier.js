@@ -1,7 +1,7 @@
 //     ----------------------     PANIER     ----------------------     //
 
 /**
- * 
+ * Fonction qui ajoute une ligne (tableau) comprenant les informations de chaque ourson ajouté au panier
  * @param {string} image 
  * @param {string} name 
  * @param {number} price 
@@ -16,44 +16,6 @@ const renderCartLine = (image, name, price, item) => {
                 <td><button class="remove-item btn btn-light " data-id="${item}"><i class="fas fa-trash-alt"></i></button></td>
             </tr>
 `;
-}
-/**
- * 
- */
-const renderForm = () => {
-    if(localStorage.length > 0) {
-        return `<p class="message">Veuillez renseigner le formulaire ci-dessous afin de finaliser votre commande.</p>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="firstName">Prénom</label>
-                        <input type="text" name="firstName" class="form-control" id="firstName" minlength="2" maxlength="30" pattern="[A-Za-z'^¨éèàù -]+" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="lastName">Nom</label>
-                        <input type="text" name="lastName" class="form-control" id="lastName" minlength="2" maxlength="30" pattern="[A-Za-z'^¨éèàù -]+" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="address">Adresse</label>
-                        <input type="text" name="address" class="form-control" id="address" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="city">Ville</label>
-                        <input type="text" name="city" class="form-control" id="city" required>
-                    </div>
-                </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" class="form-control" id="email" required>
-                    </div>
-                </div>
-                <button type="submit" name="submit" class="btn btn-primary" id="submit">Valider ma commande</button>`
-    } else {
-        return null;
-    }
 }
 
 /**
@@ -83,10 +45,6 @@ const renderCart = () => {
         document.getElementById('cart-table').innerHTML = tBody;  
         document.getElementById('amount').innerHTML = amount.toFixed(2);
 
-                
-        const formDisplay = renderForm();
-        document.getElementById('form').innerHTML = formDisplay;
-
         const removeButtons = document.getElementsByClassName('remove-item');
         for(let removeButton of removeButtons) {
             const id = removeButton.getAttribute('data-id');
@@ -109,7 +67,7 @@ const renderCart = () => {
 renderCart();
 
 /**
- * Appel de la fonction qui vide le contenu du panier (localStorage) au clic sur le bouton"vider mon panier"
+ * Appel de la fonction qui vide le contenu du panier (localStorage) au clic sur le bouton "vider mon panier"
  */
 document.getElementById('clear-cart').onclick = (e) => {   
     localStorage.clear();
@@ -142,7 +100,7 @@ const formDataExtractor = (form) => {
 }
 
 /**
- * 
+ * Fonction qui récupère les informations recueillies dans le formulaire, crée un objet body 
  * @param {*} e 
  */
 form.onsubmit = async (e) => {
@@ -152,7 +110,6 @@ form.onsubmit = async (e) => {
     // Récuperation des data du formulaire à l'aide de la fonction formDataExtractor
     const contact = formDataExtractor(form);
     const products = Object.keys(localStorage);
-    // appel de fonction formValidator
     const body = {contact, products};
     const url = 'http://localhost:3000/api/teddies/order';
     const responseData = await sendData(url, body)
@@ -166,6 +123,7 @@ form.onsubmit = async (e) => {
     console.log('data', responseData);
     if (!responseData) {
         // do something, appeler un rendererror/fonction
+        renderError(error);
     } else {
         // ajouter response data dans mon sessionstorage
         sessionStorage.setItem('order', JSON.stringify(responseData));

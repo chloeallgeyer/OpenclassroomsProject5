@@ -47,8 +47,6 @@ const renderOrder = () => {
                 <td>${name}</td>
                 <td>${price.toFixed(2)}€</td>
             </tr>
-            <br>
-            <br>
         `
     })
 

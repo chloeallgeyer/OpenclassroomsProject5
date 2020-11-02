@@ -25,8 +25,9 @@ footer {
     margin: 50px auto;
 }
 
-#welcome h1 {
+h1 {
     font-size: 30px;
+    margin-bottom: 20px;
 }
 
 .teddy-card img {
@@ -46,10 +47,16 @@ footer {
     max-width: 540px;
 }
 
+#product-form {
+    margin: 0;
+    display: flex;
+}
+
 /* ------------------- PANIER ------------------- */
 #cart-card {
     margin: 50px 0;
 }
+
 tr img {
     max-height:50px;
 }
@@ -61,4 +68,9 @@ tr img {
 
 form {
     margin: 30px 0;
+}
+
+/* ------------------- CONFIRMATION ------------------- */
+.confirmation-message {
+    margin: 50px auto;
 }

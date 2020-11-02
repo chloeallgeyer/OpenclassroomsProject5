@@ -29,11 +29,26 @@ const ajaxRequest = (url, method="GET") => {
 
 /**
  * Affiche un message d'erreur
- * @param {*} error message d'erreur
+ * @param {*} errorMessage message d'erreur
  */
-const renderError = (error) => {
-    const target2 = document.getElementById('target2');
-    // TODO: créer variable contenant structure message d'erreur + bouton refresh
-    target2.insertAdjacentHTML('beforeend', `<h2>Une erreur est survenue: impossible de charger la page</h2>`);
-    console.log(`erreur survenue : ${error}`);
+const renderError = (errorMessage) => {
+    document.getElementById('error-modal').innerHTML = `
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Une erreur est survenue</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>${errorMessage}</p>
+            </div>
+            <div class="modal-footer">
+                <a href="${window.location}"><button type="button" class="btn btn-primary">Rafraîchir la page</button></a>
+            </div>
+        </div>
+    </div>`
+    $('#error-modal').modal('show');
 }
+

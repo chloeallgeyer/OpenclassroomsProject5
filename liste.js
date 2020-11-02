@@ -1,17 +1,17 @@
 /**
- * récupère une liste d'élements (data) et les ajoute à l'élément cible target
+ * récupère une liste d'élements (data) et les ajoute à l'élément cible bear-cards
  * @param {*} data objet de l'API
  */
 const renderList = (data) => {
     // récupération de l'élément cible (conteneur des cards à remplir avec les infos de chaque ourson)
-    const target = document.getElementById('target');
+    const list = document.getElementById('bear-cards');
     // On boucle sur chaque élement de la réponse de l'API (tableau des oursons)
     for (let element of data) {
         // déclaration et initialisation de la card
         const card = createCard(element);
         console.log("element", element);
-        // ajoute à l'élément cible (target) la card déclarée ci dessus
-        target.insertAdjacentHTML('beforeend', card);
+        // ajoute à l'élément cible (bear-cards) la card déclarée ci dessus
+        list.insertAdjacentHTML('beforeend', card);
     }
 }
 
