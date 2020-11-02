@@ -1,8 +1,4 @@
-//  recupérer le session storage
-console.log(sessionStorage);
-
-
-// getAmount recupère price et additionne
+// Fonction qui recupère les éléments price et les additionne
 const getAmount = (products) => {
     let amount = 0;
     products.forEach((product) => {
@@ -12,7 +8,7 @@ const getAmount = (products) => {
 }
 
 /**
- * 
+ * Fonction qui affiche les messages et éléments de confirmation
  */
 const renderOrder = () => {
     const order = JSON.parse(sessionStorage.getItem('order'));

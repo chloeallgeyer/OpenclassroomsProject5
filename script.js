@@ -1,15 +1,15 @@
 const host = 'http://localhost:3000/';
 
 /**
- * Crée une requête Ajax
- * @param {*} url url sélectionnée
- * @param {*} method méthode utilisée
+ * Fonction qui crée une requête Ajax
+ * @param {string} url url sélectionnée
+ * @param {string} method méthode utilisée
  */
 const ajaxRequest = (url, method="GET") => {
     return new Promise( (resolve, reject) => {
-        // instanciation de la classe XMLHttpRequest 
+        // Instanciation de la classe XMLHttpRequest 
         const request = new XMLHttpRequest();
-        // appel de la méthode onreadystatechange
+        // Appel de la méthode onreadystatechange
         request.onreadystatechange = function() {   
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 const response = JSON.parse(request.responseText);
@@ -19,17 +19,17 @@ const ajaxRequest = (url, method="GET") => {
                 reject(request.status)
             }
         }
-        // appel de la méthode onerror (autres types d'erreur)
+        // Appel de la méthode onerror (autres types d'erreur)
         request.onerror = (error) => reject(error);
-        //  appel des méthodes open et send
+        // Appel des méthodes open et send
         request.open(method, url);
         request.send();
     })
 }
 
 /**
- * Affiche un message d'erreur
- * @param {*} errorMessage message d'erreur
+ * Fonction qui affiche une pop-up avec un message d'erreur
+ * @param {string} errorMessage message d'erreur
  */
 const renderError = (errorMessage) => {
     document.getElementById('error-modal').innerHTML = `

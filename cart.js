@@ -1,7 +1,7 @@
 //     ----------------------     PANIER     ----------------------     //
 
 /**
- * Fonction qui ajoute une ligne (tableau) comprenant les informations de chaque ourson ajouté au panier
+ * Fonction qui ajoute une ligne au tableau comprenant les informations de chaque ourson ajouté au panier
  * @param {string} image 
  * @param {string} name 
  * @param {number} price 
@@ -55,7 +55,7 @@ const renderCart = () => {
         }
 
     } else {
-        // affiche un message et vide le tableau
+        // Affiche un message et vide le tableau
         emptyCartMessage.innerHTML = 'Votre panier est vide :(';
         document.getElementById('cart-table').innerHTML = '';  
         document.getElementById('empty-cart-amount').innerHTML = '';
@@ -100,11 +100,10 @@ const formDataExtractor = (form) => {
 }
 
 /**
- * Fonction qui récupère les informations recueillies dans le formulaire, crée un objet body 
+ * Fonction qui récupère les informations recueillies dans le formulaire et crée un objet body 
  * @param {*} e 
  */
 form.onsubmit = async (e) => {
-    // On empêche la redirection et la propagation post submit
     e.preventDefault();
     e.stopPropagation();
     // Récuperation des data du formulaire à l'aide de la fonction formDataExtractor
@@ -122,20 +121,19 @@ form.onsubmit = async (e) => {
         });
     console.log('data', responseData);
     if (!responseData) {
-        // do something, appeler un rendererror/fonction
         renderError(error);
     } else {
-        // ajouter response data dans mon sessionstorage
+        // Ajoute responseData dans le sessionStorage
         sessionStorage.setItem('order', JSON.stringify(responseData));
         localStorage.clear();
-        // renvoyer vers page de confirmation
+        // Renvoie vers la page de confirmation
         window.location.href = "confirmation.html";
     } 
 
 }
 
 /**
- * Fonction PROMISE qui envoie des données (body) vers une url a travers la méthode post et qui renvoie la réponse
+ * Fonction PROMISE qui envoie des données (body) vers une url à travers la méthode post et qui renvoie la réponse
  * @param {object} body (données à envoyer)
  */
 const sendData = async (url, body) => {

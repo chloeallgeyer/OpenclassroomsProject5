@@ -11,7 +11,7 @@ const getParam = (param) => {
 
 /**
  * Fonction qui récupère le nom de l'ourson sélectionné et le renvoie
- * @param {string} data 
+ * @param {object} data 
  */
 const renderArticleName = (data) => {
     const articleName = data.name;
@@ -19,19 +19,19 @@ const renderArticleName = (data) => {
 }
 
 /**
- * récupère une liste d'élements (data) et les ajoute à l'élément cible target
- * @param {*} data objet de  l'ourson sélectionné
+ * Fonction qui récupère une liste d'élements (data) et les ajoute à l'élément cible target
+ * @param {object} data objet de l'ourson sélectionné
  */
 const renderProduct = (data) => {
     let select = '<option selected disabled value="">Couleurs</option>';
     // On boucle sur chaque couleur existante des oursons
     for (let i=0 ; i < data.colors.length; i++) {
-        // déclaration et initialisation des options de select
+        // Déclaration et initialisation des options de select
         select += `<option value="${data.colors[i]}">${data.colors[i]}</option>`;
         console.log(select);
     }
     const bearPrice = (data.price / 100).toFixed(2);
-    const image = `<img src="${data.imageUrl}" class="card-img" alt="...">`
+    const image = `<img src="${data.imageUrl}" class="card-img" alt="Ours en peluche - Orinoco">`
 
     document.getElementById('color-options').innerHTML = select;
     document.getElementById('bear-name').innerHTML = data.name;
@@ -44,7 +44,7 @@ const renderProduct = (data) => {
 }
 
 /**
- * Fonction qui récupère les données des produits ajoutés dans le panier et les stocke dans localStorage
+ * Fonction qui récupère les données des produits ajoutés dans le panier et les stocke dans le localStorage
  */
 const run = async () => {
 
@@ -63,7 +63,7 @@ const run = async () => {
 
     document.getElementById('product-form').onsubmit = (e) => {
         e.preventDefault();
-        // affiche la modal bootstrap au onsubmit (une fois les champs validés)
+        // Affiche la modal bootstrap au onsubmit (une fois les champs validés)
         $('#cartModal').modal('show');
 
         const info = {};
