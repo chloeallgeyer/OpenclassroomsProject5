@@ -1,4 +1,7 @@
-// Fonction qui recupère les éléments price et les additionne
+/**
+ * Fonction qui recupère les éléments price du tableau products et les additionne
+ * @param {array} products 
+ */
 const getAmount = (products) => {
     let amount = 0;
     products.forEach((product) => {
@@ -59,7 +62,6 @@ const renderOrder = () => {
     document.getElementById('expedition').innerHTML = expeditionDateStr;
 
 }
-
 renderOrder();
 
 

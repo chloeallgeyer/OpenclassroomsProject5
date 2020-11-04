@@ -37,7 +37,6 @@ const renderCart = () => {
             const image = info.imageUrl;
             const name = info.name;
             const price = info.price / 100;
-            console.log('itemsarray', itemsArray);
             tBody += renderCartLine(image, name, price, item);
             amount += price;
         })
@@ -80,7 +79,10 @@ document.getElementById('clear-cart').onclick = (e) => {
 // Initialisation des éléments
 const submit = document.getElementById("submit");
 const form = document.getElementById("form");
-// Déclaration de la fonction formDataExtractor avec le paramètre form: element formulaire
+/**
+ * Fonction formDataExtractor avec le paramètre form: element formulaire
+ * @param {*} form 
+ */
 const formDataExtractor = (form) => {
     // Instanciation de la classe FormData
     const formData = new FormData(form);
@@ -116,12 +118,10 @@ form.onsubmit = async (e) => {
             return data;
         })
         .catch( (error) => {
-            console.log('error in sendData', error);
             return null;
         });
-    console.log('data', responseData);
     if (!responseData) {
-        renderError(error);
+        renderError('Une erreur est survenue, veuillez recharger la page.');
     } else {
         // Ajoute responseData dans le sessionStorage
         sessionStorage.setItem('order', JSON.stringify(responseData));

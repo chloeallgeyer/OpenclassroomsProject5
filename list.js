@@ -9,7 +9,6 @@ const renderList = (data) => {
     for (let element of data) {
         // Déclaration et initialisation de la card
         const card = createCard(element);
-        console.log("element", element);
         // Ajoute à l'élément cible (bear-cards) la card déclarée ci dessus
         list.insertAdjacentHTML('beforeend', card);
     }
@@ -41,4 +40,4 @@ const createCard = (element) => {
  */
 ajaxRequest(`${host}api/teddies/`)
     .then( (data) => renderList(data))
-    .catch( (error) => renderError(error));
+    .catch( (error) => renderError('Une erreur serveur est survenue, veuillez recharger la page.'));

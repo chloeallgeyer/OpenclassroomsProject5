@@ -1,6 +1,5 @@
-
 /**
- * Fonction qui récupère un paramètre d'url et le renvoie
+ * Fonction qui récupère un paramètre de l'url de la page courante et le retourne
  * @param {string} param paramètre demandé
  */
 const getParam = (param) => {
@@ -19,7 +18,7 @@ const renderArticleName = (data) => {
 }
 
 /**
- * Fonction qui récupère une liste d'élements (data) et les ajoute à l'élément cible target
+ * Fonction qui récupère une liste d'élements (data) et les ajoute à l'élément cible 
  * @param {object} data objet de l'ourson sélectionné
  */
 const renderProduct = (data) => {
@@ -28,7 +27,6 @@ const renderProduct = (data) => {
     for (let i=0 ; i < data.colors.length; i++) {
         // Déclaration et initialisation des options de select
         select += `<option value="${data.colors[i]}">${data.colors[i]}</option>`;
-        console.log(select);
     }
     const bearPrice = (data.price / 100).toFixed(2);
     const image = `<img src="${data.imageUrl}" class="card-img" alt="Ours en peluche - Orinoco">`
@@ -57,7 +55,7 @@ const run = async () => {
         return data;
     })
     .catch( (error) => {
-        renderError(error);
+        renderError('Une erreur est survenue, veuillez recharger la page.');
         return null;
     });
 
@@ -76,5 +74,3 @@ const run = async () => {
 }
 
 run();
-
-console.log(localStorage);
