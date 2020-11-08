@@ -22,16 +22,14 @@ const renderArticleName = (data) => {
  * @param {object} data objet de l'ourson sélectionné
  */
 const renderProduct = (data) => {
-    let select = '<option selected disabled value="">Couleurs</option>';
-    // On boucle sur chaque couleur existante des oursons
+    let select = '';
     for (let i=0 ; i < data.colors.length; i++) {
-        // Déclaration et initialisation des options de select
         select += `<option value="${data.colors[i]}">${data.colors[i]}</option>`;
     }
     const bearPrice = (data.price / 100).toFixed(2);
     const image = `<img src="${data.imageUrl}" class="card-img" alt="Ours en peluche - Orinoco">`
 
-    document.getElementById('color-options').innerHTML = select;
+    document.getElementById('color-options').insertAdjacentHTML('beforeend', select);
     document.getElementById('bear-name').innerHTML = data.name;
     document.getElementById('bear-description').innerHTML = data.description;
     document.getElementById('bear-price').innerHTML = bearPrice + '€';
@@ -46,7 +44,6 @@ const renderProduct = (data) => {
  */
 const run = async () => {
 
-    // Initialisation de la variable ayant pour valeur le résultat de la fonction getParam('id)
     const pageId = getParam('id');
 
     const ajaxResponse = await ajaxRequest(`${host}api/teddies/${pageId}`)
@@ -61,7 +58,6 @@ const run = async () => {
 
     document.getElementById('product-form').onsubmit = (e) => {
         e.preventDefault();
-        // Affiche la modal bootstrap au onsubmit (une fois les champs validés)
         $('#cartModal').modal('show');
 
         const info = {};

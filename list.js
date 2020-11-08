@@ -3,13 +3,10 @@
  * @param {object} data objet de l'API
  */
 const renderList = (data) => {
-    // Récupération de l'élément cible (conteneur des cards à remplir avec les infos de chaque ourson)
     const list = document.getElementById('bear-cards');
-    // On boucle sur chaque élement de la réponse de l'API (tableau des oursons)
+
     for (let element of data) {
-        // Déclaration et initialisation de la card
         const card = createCard(element);
-        // Ajoute à l'élément cible (bear-cards) la card déclarée ci dessus
         list.insertAdjacentHTML('beforeend', card);
     }
 }

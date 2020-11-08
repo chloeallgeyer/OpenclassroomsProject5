@@ -15,13 +15,10 @@ const ajaxRequest = (url, method="GET") => {
                 const response = JSON.parse(request.responseText);
                 resolve(response);
             } else if (request.status > 400) {
-                // Gestion des erreurs server > 400
                 reject(request.status)
             }
         }
-        // Appel de la méthode onerror (autres types d'erreur)
         request.onerror = (error) => reject(error);
-        // Appel des méthodes open et send
         request.open(method, url);
         request.send();
     })

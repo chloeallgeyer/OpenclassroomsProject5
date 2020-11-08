@@ -54,7 +54,6 @@ const renderCart = () => {
         }
 
     } else {
-        // Affiche un message et vide le tableau
         emptyCartMessage.innerHTML = 'Votre panier est vide :(';
         document.getElementById('cart-table').innerHTML = '';  
         document.getElementById('empty-cart-amount').innerHTML = '';
@@ -84,11 +83,9 @@ const form = document.getElementById("form");
  * @param {*} form 
  */
 const formDataExtractor = (form) => {
-    // Instanciation de la classe FormData
     const formData = new FormData(form);
     // Récupération des entrées du formulaire (name="") via la méthode entries()
     const entries = formData.entries();
-    // Initialisation de l'objet de retour
     const obj = {};
     // Boucle sur chaque entrée du formulaire
     for (var pair of entries) {
@@ -97,7 +94,6 @@ const formDataExtractor = (form) => {
         const value = pair[1];
         obj[key] = value;
     }
-    // On retourne l'objet complet
     return obj;
 }
 
@@ -126,7 +122,6 @@ form.onsubmit = async (e) => {
         // Ajoute responseData dans le sessionStorage
         sessionStorage.setItem('order', JSON.stringify(responseData));
         localStorage.clear();
-        // Renvoie vers la page de confirmation
         window.location.href = "confirmation.html";
     } 
 
